@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-## Week 1 - Video: Quick Union
+## Week 1 - Video: Quick Union Improvements
 ## This is a lazy execution of this algorithm where the parent of an element can be determined
 ## by the value present in it and we can continue to do so until the value is equal to the index
 ## at which we know that we have reached the root of that connectivity tree, what makes it better
@@ -17,6 +17,9 @@ class DynamicConnectivity:
         print(self.id)
 
     def root(self, p):
+        '''
+        Complexity: lg N
+        '''
         while self.id[p] != p:
             p = self.id[p]
         return p
