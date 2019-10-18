@@ -2,7 +2,9 @@
 ## Week 1 - Video: Quick Union
 ## This is a lazy execution of this algorithm where the parent of an element can be determined
 ## by the value present in it and we can continue to do so until the value is equal to the index
-## at which we know that we have reached the root of that connectivity tree
+## at which we know that we have reached the root of that connectivity tree, what makes it better
+## is the addition of weights, it subsiquently reduces the performance as now we can say that
+## that depth of any node x is log_2 n
 
 class DynamicConnectivity:
     def __init__(self, N):
@@ -10,6 +12,7 @@ class DynamicConnectivity:
         Complexity: n
         '''
         self.N = N
+        self.weight = [0 for _ in range(N)]
         self.id = [i for i in range(N)]
         print(self.id)
 
@@ -20,17 +23,22 @@ class DynamicConnectivity:
 
     def connected(self, p, q):
         '''
-        Complexity: n
+        Complexity: lg N
         '''
         return self.root(p) == self.root(q)
 
     def union(self, p, q):
         '''
-        Complexity: Worst Case: n
+        Complexity: Worst Case: lg N
         '''
         first_root = self.root(p)
         second_root = self.root(q)
-        self.id[p] = second_root
+        if self.weight[first_root] <= self.weight[second_root] :
+            self.id[first_root] = second_root
+            self.weight[second_root] += self.weight[first_root]
+        else:
+            self.id[second_root] = first_root
+            self.weight[first_root] += self.weight[second_root]
 
     def printit(self):
         print(self.id)
@@ -48,7 +56,10 @@ def main():
 if __name__ == '__main__':
     main()
 
-#Output:
+
+
+
+# Output: 
 # [0, 1, 2, 3, 4, 5]
 # [0, 3, 2, 3, 4, 5]
 # [0, 3, 4, 3, 4, 5]
