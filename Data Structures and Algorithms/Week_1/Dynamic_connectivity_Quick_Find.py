@@ -6,12 +6,10 @@
 ## [0,1,2,1,4]
 """
 
-
-
-
 class DynamicConnectivity:
     """
-    Class containing connected and union method for checking dynamic_connectivity
+    
+connected and union method for checking dynamic_connectivity
     """
     def __init__(self, n):
         '''
@@ -44,6 +42,7 @@ class DynamicConnectivity:
         """
         print(self.id)
 
+
 def main():
     """
     Main Method that runs the first time
@@ -59,7 +58,7 @@ def main():
 if __name__ == '__main__':
     main()
 # Output :
-## [0, 1, 2, 3, 4, 5]
-## [0, 3, 2, 3, 4, 5]
-## [0, 3, 4, 3, 4, 5]
-## [0, 3, 5, 3, 5, 5]
+# [0, 1, 2, 3, 4, 5]
+# [0, 3, 2, 3, 4, 5]
+# [0, 3, 4, 3, 4, 5]
+# [0, 3, 5, 3, 5, 5]
