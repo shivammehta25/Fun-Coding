@@ -4,25 +4,27 @@ This is from the URL  :https://www.hackerrank.com/challenges/minimum-swaps-2/pro
 In this we need to find the minimum amount of swaps required for an array to be sorted
 """
 
+
 def minimum_swap(arr):
     """
     Takes an array and finds the minimum swaps needed
-    
+   
     The input is first reduced into the subtracted index equivalent format then if the index is equal to the value things remains unchanged
     otherwise the value is swapped with the index of that value.
-    
+   
     arr: array to find the solution to
-    
-    Returns: 
+   
+    Returns:
     swap : integer , minimum number of swaps
     """
-    arr = [i-1 for i in arr]
     swap = 0
-    for i in range(len(arr)):
-        if i == arr[i]:
+    i = 0
+    while i < len(arr):
+        if i+1 == arr[i]:
+            i += 1
             continue
-        index = arr.index(i)
-        arr[i], arr[index] = arr[index], arr[i]
+        temp = arr[i]
+        arr[temp-1], arr[i] = arr[i], arr[temp-1]
         swap += 1
     return swap
 
@@ -34,7 +36,7 @@ def main():
     n = int(input())
     arr = list(map(int, input().rstrip().split()))
     print(minimum_swap(arr))
-    
+
 
 def test():
     """
@@ -51,4 +53,4 @@ def test():
 
 
 if __name__ == '__main__':
-    test()  
+    test()
