@@ -1,18 +1,18 @@
-from math import sqrt
 from itertools import compress
+
 
 def primes(n):
     """ Returns  a list of primes < n for n > 2 """
     sieve = bytearray([True]) * (n//2)
-    for i in range(3,int(n**0.5)+1,2):
+    for i in range(3, int(n**0.5)+1, 2):
         if sieve[i//2]:
             sieve[i*i//2::i] = bytearray((n-i*i-1)//(2*i)+1)
-    return [2,*compress(range(3,n,2), sieve[1:])]
+    return [2, *compress(range(3, n, 2), sieve[1:])]
 
-def factorization(n):
+
+def factorization(primelist, n):
     """ Returns a list of the prime factorization of n """
     pf = []
-    primeslist = primes(int(n**0.5)+1)
     for p in primeslist:
         if p*p > n:
             break
@@ -24,25 +24,26 @@ def factorization(n):
             pf.append((p, count))
     if n > 1:
         pf.append((n, 1))
-
     return pf
 
-def divi(n):
+
+def divi(primelist, n):
     """ Returns an unsorted list of the divisors of n """
     divs = [1]
-    for p, e in factorization(n):
+    for p, e in factorization(primelist, n):
         divs += [x*p**k for k in range(1, e+1) for x in divs]
     return divs
+
 
 with open('input.txt', 'r') as input:
     N = int(input.readline())
     max_divisors = -1
     max_number = 0
-    x = N//2
+    primeslist = primes(int(N**0.5)+1)
+    x = N//2 + 1
     while x < N+1:
-    # for x in range(N//2, N+1):
-        divisors = divi(x)
-        # print(x, divisors)
+        divisors = divi(primeslist, x)
+        print(x, divisors)
         if len(divisors) > max_divisors:
             max_divisors = len(divisors)
             max_number = x
