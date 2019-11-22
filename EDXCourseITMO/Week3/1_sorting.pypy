@@ -1,0 +1,44 @@
+output = []
+
+
+def sort(arr, L, R):
+    N = len(arr)
+    if N == 1:
+        return arr
+
+    m = N // 2
+    left = sort(arr[:m], L, R)
+    right = sort(arr[m:], L + m, R)
+
+    aux = [0] * N
+    i, j, k = 0, 0, 0
+    while i < m and j + m < N:
+        if left[i] <= right[j]:
+            aux[k] = left[i]
+            i += 1
+        else:
+            aux[k] = right[j]
+            j += 1
+        k += 1
+
+    aux[k:k+m-i] = left[i:m]
+    k += m-i
+    aux[k:k+N-j-m] = right[j:N-m]
+    k += m-i
+    
+    output.append([L+1, L + N, aux[0], aux[N-1]])
+    return aux
+
+with open('input.txt') as inp:
+    n = int(inp.readline())
+    arr = list(map(int, inp.readline().split()))
+
+    sorted_arr = sort(arr, 0, n-1)
+
+    output.append([ str(x) for x in sorted_arr])
+
+with open('output.txt', 'w') as out:
+    for line in output:
+        out.write(' '.join(map(str,line)))
+        out.write('\n')
+        print(line)
