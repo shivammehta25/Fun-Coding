@@ -1,0 +1,30 @@
+
+def calculate_sum(medicines, max_weight):
+    medicines = sorted(medicines, reverse=True, key=lambda x: x[0])
+    total_sum = 0
+    for i, values in enumerate(medicines):
+        if values[1] >= max_weight:
+            total_sum += max_weight * values[0]
+            max_weight = 0
+            break
+        else:
+            total_sum += values[0] * values[1]
+            max_weight -= values[1]
+        
+    return str(total_sum)
+    
+    
+
+
+o = open('output.txt','w')
+with open('input.txt') as inp:
+    n = int(inp.readline())
+    medicines = []
+    for _ in range(n):
+        medicines.append(list(map(int, inp.readline().split())))
+    max_weight = int(inp.readline())
+    total_sum = calculate_sum(medicines, max_weight)
+    print(total_sum)
+    o.write(total_sum + '\n')
+
+o.close()
