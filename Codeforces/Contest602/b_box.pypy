@@ -1,0 +1,25 @@
+
+def check_range(a, n):
+    d = {i:0 for i in range(1,n+1)}
+    out = []
+    for e in a:
+        if e in d:
+            out.append(e)
+            del d[e]
+        else:
+            remaining_items = sorted(list(d.keys()))
+            check = True
+            for r in remaining_items:
+                if e >= r:
+                    out.append(r)
+                    del d[r]
+                else:
+                    return [-1]
+
+    return out
+    
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    print(' '.join(map(str,check_range(a, n))))

@@ -7,7 +7,9 @@ def can_buy(n):
 ok = 0
 ng = 10**9+1
 while ng-ok > 1:
+    print(ng, ok)
     m = (ok+ng)//2
+    print(m)
     if can_buy(m):
         ok = m
     else:
