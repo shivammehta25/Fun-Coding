@@ -15,9 +15,6 @@ def reverse_list_with_k(head, k):
         prev = head
         head = temp
         i += 1
-        
-    if i < k:
-        prev, start, temp = reverse_list_with_k(prev, i)
     
     return prev, start, temp
 
@@ -31,24 +28,26 @@ def reverseNodesInKGroups(l, k):
     head = None
     prev_last_node = None
     
-
+    current_start_node = l
+    i = 0
     while iterator:
-        start, end, next_node = reverse_list_with_k(iterator, k)
-        print(f'start: {start.value}, end: {end.value}')
-        if head is None:
-            head = start
-        
-        if prev_last_node:
-            print(f'Prev node: {prev_last_node.value}')
-            prev_last_node.next = start
-        
-        
-        prev_last_node = end
-        
-        
-        iterator = next_node
-
-    prev_last_node.next = iterator
+        i += 1
+        if i % k != 0:
+            iterator = iterator.next
+        else:
+            start, end, next_node = reverse_list_with_k(current_start_node, k)
+            if head is None:
+                head = start
+                
+            if prev_last_node:
+                prev_last_node.next = start
+            
+            prev_last_node = end
+                
+            current_start_node = next_node
+            iterator = next_node
+            
+    prev_last_node.next = current_start_node
 
     return head
             
