@@ -1,3 +1,4 @@
+# https://app.codesignal.com/challenge/YPAhD7Tz3o3E4vwBi
 def squareDigitsSequence(a0):
     values = set()
     values.add(a0)
