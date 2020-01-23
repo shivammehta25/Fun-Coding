@@ -106,5 +106,11 @@ venv.bak/
 # MacOs
 .DS_Store
 
+#VSCode
+.vscode
+
+#PyCharm
+.idea
+
 # Emacs
 *~
