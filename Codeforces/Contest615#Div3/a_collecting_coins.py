@@ -10,6 +10,6 @@ while t:
         s += m - x
 
     if n - s >= 0 and (n - s) % 3 == 0:
-        print('YES')
+        print("YES")
     else:
-        print('NO')
+        print("NO")
