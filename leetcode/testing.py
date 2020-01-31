@@ -5,7 +5,7 @@ i = 0
 
 filenames = {
     'generator': 'test_generator.py',
-    'brute_force': 'first_missing_positive_bf.py',
+    'brute_force': 'firstMissing_bf.py',
     'solution' : 'first_missing_positive.py'
     }
 
