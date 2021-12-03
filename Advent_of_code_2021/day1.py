@@ -1,8 +1,5 @@
 # Have to count number of times the current number is greater than the previous one
 
-from os import name
-
-
 def open_file(file):
     with open(file) as f:
         data = [int(x.strip()) for x in f.readlines()]
@@ -18,7 +15,6 @@ def open_file(file):
 
 
 def puzzle(data, window_size):
-
     x = 0
 
     def convolution(i):
