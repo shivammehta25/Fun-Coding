@@ -1,4 +1,3 @@
-import numpy as np
 
 
 def open_file(file):
