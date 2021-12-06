@@ -5,6 +5,7 @@ class Board:
     def __init__(self, lines):
         self.data = []
         self.dict = {}
+        self.bingoed = False
         for i, line in enumerate(lines):
             current_row = []
             for j, element in enumerate(line.split()):
@@ -56,9 +57,12 @@ class Board:
     def check_bingo(self):
         bingo = self._check_rows()
         if bingo:
+            self.bingoed = True
             return True, self._unmarked_sum()
+
         bingo = self._check_column()
         if bingo:
+            self.bingoed = True
             return True, self._unmarked_sum()
         return False, 0
 
@@ -78,8 +82,6 @@ def open_file(file):
 
 def day4_a(inputs, boards):
     for inp in inputs:
-        if inp == 24:
-            print(1)
         for board in boards:
             board.mark(inp)
             bingo, unm_sum = board.check_bingo()
@@ -89,6 +91,21 @@ def day4_a(inputs, boards):
                 exit()
 
 
+def day4_b(inputs, boards):
+    bingoed_boards = 0
+    for inp in inputs:
+        for board in boards:
+            if not board.bingoed:
+                board.mark(inp)
+                bingo, unm_sum = board.check_bingo()
+                if bingo:
+                    board.bingoed = True
+                    bingoed_boards += 1
+                    if bingoed_boards == len(boards):
+                        print(inp, unm_sum)
+                        print(unm_sum * inp)
+
+
 if __name__ == '__main__':
     inputs, boards = open_file('inputs/day4.txt')
-    day4_a(inputs, boards)
+    day4_b(inputs, boards)
