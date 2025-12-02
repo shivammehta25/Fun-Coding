@@ -1,5 +1,3 @@
-from audioop import cross
-from turtle import update
 from utils import Input
 
 def A():
