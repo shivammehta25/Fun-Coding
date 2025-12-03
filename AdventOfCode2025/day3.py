@@ -1,13 +1,18 @@
 from utils import Input
 
 
-def max_argmax(nums: list[int]) -> tuple[int, int]:
+def max_argmax_2(nums: list[int]) -> tuple[int, int]:
     val, idx = -1, -1
     for i, n in enumerate(nums):
         if n > val:
             val = n
             idx = i
+    assert idx != -1
+    return val, idx
 
+
+def max_argmax(nums: list[int]) -> tuple[int, int]:
+    idx, val =  max(list(enumerate(nums)), key=lambda x: x[1])
     return val, idx
 
 
@@ -21,7 +26,7 @@ def max_val_char(nums: list[int], n: int) -> int:
 
 def A():
     input = Input(3, 'a').convert_to_2d(to_int=True)
-    INPUT = input.data
+    INPUT = input.sample
 
     ans = 0
     for bank in INPUT:
@@ -33,7 +38,7 @@ def A():
 def B():
 
     input = Input(3, 'a').convert_to_2d(to_int=True)
-    INPUT = input.data
+    INPUT = input.sample
 
     ans = 0
     for bank in INPUT:
