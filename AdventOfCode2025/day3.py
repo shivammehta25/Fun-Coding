@@ -25,10 +25,7 @@ def A():
 
     ans = 0
     for bank in INPUT:
-        c1, idx = max_argmax(bank[:-1])
-        c2, _ = max_argmax(bank[idx + 1:])
-        ans += c1 * 10 + c2
-
+        ans += max_val_char(bank, 2) 
     
     print(ans)
 
@@ -40,8 +37,7 @@ def B():
 
     ans = 0
     for bank in INPUT:
-        a = int(max_val_char(bank, 12))
-        ans += a
+        ans += max_val_char(bank, 12)
 
     print(ans)
 
