@@ -8,6 +8,10 @@ def load_file(filename: str) -> list[str]:
 def row_to_2d(nums: list[str], to_int: bool) -> list[list[str | int]]:
     return [[int(x) if to_int else x for x in row] for row in nums]
 
+def print_2d(matrix: list[list[str | int]]):
+    print('\n'.join(' '.join(map(str, row)) for row in matrix))
+
+
 class Input:
     def __init__(self, day: int, puzzle_part: str):
         self.day = day
