@@ -68,9 +68,7 @@ def B():
 
     intervals = merge_intervals(intervals)
 
-    ans = 0
-    for s, e in intervals:
-        ans += e - s + 1
+    ans = sum(e - s + 1 for s, e in intervals)
 
     print(ans)
     
