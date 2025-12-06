@@ -2,7 +2,7 @@ import os
 
 def load_file(filename: str) -> list[str]:
     with open(filename, 'r') as file:
-        return [line.strip() for line in file]
+        return [line for line in file]
 
 
 def row_to_2d(nums: list[str], to_int: bool) -> list[list[str | int]]:

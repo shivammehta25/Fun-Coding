@@ -27,7 +27,6 @@ def merge_intervals(intervals: list[tuple[int, int]]) -> list[tuple[int, int]]:
 
 def A():
     input = Input(day, 'a')
-    
     INPUT = input.data
 
     
