@@ -5,8 +5,8 @@ def load_file(filename: str) -> list[str]:
         return [line for line in file]
 
 
-def row_to_2d(nums: list[str], to_int: bool) -> list[list[str | int]]:
-    return [[int(x) if to_int else x for x in row] for row in nums]
+def row_to_2d(nums: list[str], to_int: bool, strip: bool) -> list[list[str | int]]:
+    return [[int(x) if to_int else x for x in row.strip()] for row in nums]
 
 def print_2d(matrix: list[list[str | int]]):
     print('\n'.join(' '.join(map(str, row)) for row in matrix))
@@ -22,8 +22,8 @@ class Input:
 
     
 
-    def convert_to_2d(self, to_int: bool = False):
-        self.sample = row_to_2d(self.sample, to_int)  # type: ignore[arg-type]
-        self.data = row_to_2d(self.data, to_int)  # type: ignore[arg-type]
-        self.tests = {i: row_to_2d(val, to_int) if val is not None else None for i, val in self.tests.items()}  # type: ignore[arg-type]
+    def convert_to_2d(self, to_int: bool = False, strip=False):
+        self.sample = row_to_2d(self.sample, to_int, strip=strip)  # type: ignore[arg-type]
+        self.data = row_to_2d(self.data, to_int, strip=strip)  # type: ignore[arg-type]
+        self.tests = {i: row_to_2d(val, to_int, strip) if val is not None else None for i, val in self.tests.items()}  # type: ignore[arg-type]
         return self
