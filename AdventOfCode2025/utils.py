@@ -6,10 +6,22 @@ def load_file(filename: str) -> list[str]:
 
 
 def row_to_2d(nums: list[str], to_int: bool, strip: bool) -> list[list[str | int]]:
-    return [[int(x) if to_int else x for x in row.strip()] for row in nums]
+    return [[int(x) if to_int else x for x in row.strip()] if strip else [int(x) if to_int else x for x in row.strip()] for row in nums]
 
 def print_2d(matrix: list[list[str | int]]):
     print('\n'.join(' '.join(map(str, row)) for row in matrix))
+
+def csv_to_list(nums: list[str], to_int: bool, strip: bool) -> list[list[str | int]]:
+    out = []
+    for row in nums:
+        if strip:
+            row = row.strip()
+        row = row.split(',')
+        if to_int:
+            row = list(map(int, row))
+        out.append(row)
+    
+    return out
 
 
 class Input:
@@ -26,4 +38,10 @@ class Input:
         self.sample = row_to_2d(self.sample, to_int, strip=strip)  # type: ignore[arg-type]
         self.data = row_to_2d(self.data, to_int, strip=strip)  # type: ignore[arg-type]
         self.tests = {i: row_to_2d(val, to_int, strip) if val is not None else None for i, val in self.tests.items()}  # type: ignore[arg-type]
+        return self
+    
+    def from_csv(self, to_int: bool = False, strip=False):
+        self.sample = csv_to_list(self.sample, to_int, strip=strip)  # type: ignore[arg-type]
+        self.data = csv_to_list(self.data, to_int, strip=strip)  # type: ignore[arg-type]
+        self.tests = {i: csv_to_list(val, to_int, strip) if val is not None else None for i, val in self.tests.items()}  # type: ignore[arg-type]
         return self

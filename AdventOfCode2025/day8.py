@@ -18,14 +18,14 @@ def A():
     connected = set()
 
     dist_list = {}
-    
-    for num1 in INPUT:
-        num1 = tuple(num1)
-        for num2 in INPUT:
-            num2 = tuple(num2)
+
+    for i in range(len(INPUT)):
+        num1 = tuple(INPUT[i])
+        for j in range(i + 1, len(INPUT)):
+            num2 = tuple(INPUT[j])
             if num1 != num2 and (num1, num2) not in dist_list and (num2, num1) not in dist_list:
                 dist_list[tuple(sorted((num1, num2)))] = dist(num1, num2)
-    
+   
     dist_list = sorted(dist_list.items(), key=lambda x: x[1], reverse=True)
 
     circuits: list[set[tuple[int, int, int]]] = [ set([tuple(x)]) for x in INPUT ]
@@ -72,10 +72,10 @@ def B():
 
     dist_list = {}
     
-    for num1 in INPUT:
-        num1 = tuple(num1)
-        for num2 in INPUT:
-            num2 = tuple(num2)
+    for i in range(len(INPUT)):
+        num1 = tuple(INPUT[i])
+        for j in range(i + 1, len(INPUT)):
+            num2 = tuple(INPUT[j])
             if num1 != num2 and (num1, num2) not in dist_list and (num2, num1) not in dist_list:
                 dist_list[tuple(sorted((num1, num2)))] = dist(num1, num2)
     
